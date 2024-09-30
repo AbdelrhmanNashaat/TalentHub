@@ -18,7 +18,7 @@ class NavToSignUp extends StatelessWidget {
         GestureDetector(
           onTap: () => CommonFunctions().navWithReplacement(
             context: context,
-            widget: const SignUpView(),
+            pageName: const SignUpView(),
           ),
           child: Text(
             'Sign up',

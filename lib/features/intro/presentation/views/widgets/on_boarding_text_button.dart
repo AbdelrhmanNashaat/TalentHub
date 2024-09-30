@@ -13,7 +13,7 @@ class OnBoardingTextButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () => CommonFunctions()
-          .navWithReplacement(context: context, widget: const SignInView()),
+          .navWithReplacement(context: context, pageName: const SignInView()),
       child: Text('Skip', style: CustomTextStyles.style20Medium),
     );
   }

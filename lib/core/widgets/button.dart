@@ -9,12 +9,14 @@ class CustomButton extends StatelessWidget {
   final VoidCallback onPressed;
   final Size size;
   final bool isLoading;
+  final double? width;
   const CustomButton({
     super.key,
     required this.text,
     required this.onPressed,
     required this.size,
     this.isLoading = false,
+    this.width,
   });
 
   @override
@@ -22,7 +24,7 @@ class CustomButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: Constant.circleAvatar,
-        fixedSize: Size(size.width, 42),
+        fixedSize: Size(width ?? size.width, 42),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),

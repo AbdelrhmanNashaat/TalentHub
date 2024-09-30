@@ -6,11 +6,35 @@ import 'package:shared_preferences/shared_preferences.dart';
 class CommonFunctions {
   void navWithReplacement({
     required BuildContext context,
-    required Widget widget,
+    required Widget pageName,
   }) {
     Navigator.of(context).pushReplacement(
       PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => widget,
+        pageBuilder: (context, animation, secondaryAnimation) => pageName,
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const begin = 0.0;
+          const end = 1.0;
+          const curve = Curves.easeInOut;
+          final tween = Tween(begin: begin, end: end).chain(
+            CurveTween(curve: curve),
+          );
+          return FadeTransition(
+            opacity: animation.drive(tween),
+            child: child,
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 800),
+      ),
+    );
+  }
+
+  void navWithoutReplacement({
+    required BuildContext context,
+    required Widget pageName,
+  }) {
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) => pageName,
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           const begin = 0.0;
           const end = 1.0;

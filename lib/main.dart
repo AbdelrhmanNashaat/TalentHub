@@ -12,9 +12,7 @@ void main() async {
   setupServiceLocator();
   await getIt<CacheHelper>().init();
   Bloc.observer = SimpleBlocObserver();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const TalentHub());
 }
 

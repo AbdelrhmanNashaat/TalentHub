@@ -23,4 +23,9 @@ class CustomTextStyles {
     fontWeight: FontWeight.w400,
     color: Constant.primaryColor,
   );
+  static TextStyle style24Bold = GoogleFonts.poppins(
+    fontSize: 24,
+    fontWeight: FontWeight.w700,
+    color: Constant.primaryColor,
+  );
 }

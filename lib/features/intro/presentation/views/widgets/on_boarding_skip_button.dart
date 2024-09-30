@@ -20,8 +20,8 @@ class OnBoardingNextButtonButton extends StatelessWidget {
               duration: const Duration(milliseconds: 500),
               curve: Curves.easeIn);
         } else {
-          CommonFunctions()
-              .navWithReplacement(context: context, widget: const SignInView());
+          CommonFunctions().navWithReplacement(
+              context: context, pageName: const SignInView());
         }
       },
       child: CircleAvatar(
