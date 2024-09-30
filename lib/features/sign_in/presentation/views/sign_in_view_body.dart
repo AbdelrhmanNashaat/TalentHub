@@ -24,15 +24,17 @@ class SignInViewBody extends StatelessWidget {
             Text('Sign in', style: CustomTextStyles.style30Bold),
             Text('Welcome back!', style: CustomTextStyles.style14Light),
             const SizedBox(height: 25),
-            const CustomTextField(
+            CustomTextField(
               hintText: 'Email',
               prefixIcon: Icons.email,
+              controller: TextEditingController(),
             ),
             const SizedBox(height: 25),
-            const CustomTextField(
+            CustomTextField(
               hintText: 'Password',
               obscureText: true,
               prefixIcon: Icons.lock,
+              controller: TextEditingController(),
             ),
             const SizedBox(height: 15),
             const ForgetPasswordWidget(),
