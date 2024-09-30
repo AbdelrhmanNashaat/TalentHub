@@ -1,50 +1,80 @@
-import 'package:flutter/material.dart';
+import 'dart:developer';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hire_me/features/forget_password/presentation/views/chang_pass_success_view.dart';
 import '../../../../../core/common/functions.dart';
 import '../../../../../core/widgets/button.dart';
 import '../../../../../core/widgets/text_field.dart';
-import '../verify_code_view.dart';
+import '../../manager/forget_pass_cubit/forget_pass_cubit.dart';
+import '../../manager/forget_pass_cubit/forget_pass_state.dart';
 
-class ForgetPassMainWidget extends StatelessWidget {
+class ForgetPassMainWidget extends StatefulWidget {
+  final Size size;
   const ForgetPassMainWidget({
     super.key,
-    required this.formKey,
     required this.size,
   });
 
-  final GlobalKey<FormState> formKey;
-  final Size size;
+  @override
+  State<ForgetPassMainWidget> createState() => _ForgetPassMainWidgetState();
+}
 
+class _ForgetPassMainWidgetState extends State<ForgetPassMainWidget> {
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    var bloc = BlocProvider.of<ForgetPassCubit>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 14),
-      child: Column(
-        children: [
-          CustomTextField(
-            hintText: 'Email',
-            prefixIcon: Icons.email,
-            controller: TextEditingController(),
-            validationValue: (value) {
-              if (value!.isEmpty) {
-                return 'Please enter your email';
-              }
-              return null;
-            },
-          ),
-          const SizedBox(height: 15),
-          CustomButton(
-            text: 'Send',
-            onPressed: () {
-              CommonFunctions().navWithoutReplacement(
-                context: context,
-                pageName: const VerifyCodeView(),
-              );
-              if (formKey.currentState!.validate()) {}
-            },
-            size: size,
-          ),
-        ],
+      child: Form(
+        key: formKey,
+        child: Column(
+          children: [
+            CustomTextField(
+              hintText: 'Email',
+              prefixIcon: Icons.email,
+              controller: bloc.emailController,
+              validationValue: (value) {
+                if (value!.isEmpty) {
+                  return 'Please enter your email';
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 15),
+            BlocConsumer<ForgetPassCubit, ForgetPassState>(
+              listener: (context, state) {
+                if (state is ForgetPassSuccess) {
+                  CommonFunctions().navWithoutReplacement(
+                    context: context,
+                    pageName: const ChangPassSuccessView(),
+                  );
+                }
+                if (state is ForgetPassFailure) {
+                  log(state.errorMessage);
+                  CommonFunctions().showToastMessage(
+                    msg: state.errorMessage,
+                    context: context,
+                    color: Colors.red,
+                  );
+                }
+              },
+              builder: (context, state) {
+                return CustomButton(
+                  isLoading: state is ForgetPassLoading ? true : false,
+                  text: 'Send',
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      bloc.resetPassword();
+                    }
+                  },
+                  size: widget.size,
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

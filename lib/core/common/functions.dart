@@ -70,7 +70,7 @@ class CommonFunctions {
   Future<bool?> showToastMessage(
       {required String msg,
       required context,
-      double fontSize = 14,
+      double fontSize = 12,
       Color? color}) {
     return Fluttertoast.showToast(
       msg: msg,

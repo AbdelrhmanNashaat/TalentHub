@@ -10,11 +10,9 @@ class ForgetPassViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
-      child: Form(
-        key: formKey,
+      child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -30,7 +28,7 @@ class ForgetPassViewBody extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 25),
-            ForgetPassMainWidget(formKey: formKey, size: size),
+            ForgetPassMainWidget(size: size),
           ],
         ),
       ),
