@@ -7,4 +7,5 @@ class Constant {
   static Color primaryColorWithOpacity50 =
       const Color(0xFF1D3557).withOpacity(0.5);
   static Color fillColor = const Color(0xFFA8DADC).withOpacity(0.3);
+  static Color scaffoldColor = const Color(0xFFF1FAEE);
 }

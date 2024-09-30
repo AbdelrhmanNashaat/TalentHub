@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hire_me/core/common/functions.dart';
 
+import '../../../../../core/common/functions.dart';
 import '../../../../../core/utils/text_styles.dart';
-import '../../../../sign_up/presentation/views/sign_up_view.dart';
+import '../../../../sign_in/presentation/views/sign_in_view.dart';
 
-class NavToSignUp extends StatelessWidget {
-  const NavToSignUp({
+class NavToLoginWidget extends StatelessWidget {
+  const NavToLoginWidget({
     super.key,
   });
 
@@ -14,14 +14,15 @@ class NavToSignUp extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('Don\'t have an account? ', style: CustomTextStyles.style16Medium),
+        Text('Already have an account? ',
+            style: CustomTextStyles.style16Medium),
         GestureDetector(
           onTap: () => CommonFunctions().navWithReplacement(
             context: context,
-            widget: const SignUpView(),
+            widget: const SignInView(),
           ),
           child: Text(
-            'Sign up',
+            'Sign in',
             style: CustomTextStyles.style16Medium
                 .copyWith(color: Colors.blue, fontWeight: FontWeight.bold),
           ),

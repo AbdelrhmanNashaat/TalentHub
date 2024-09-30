@@ -6,7 +6,7 @@ class CustomTextField extends StatefulWidget {
   final String hintText;
   final bool obscureText;
   final IconData? prefixIcon;
-  final String? validationValue;
+  final String? Function(String?)? validationValue;
   final TextEditingController controller;
 
   const CustomTextField({
@@ -35,12 +35,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: widget.controller,
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return '${widget.validationValue ?? widget.hintText} is required';
-        }
-        return null;
-      },
+      validator: widget.validationValue,
       obscureText: _obscureText,
       decoration: InputDecoration(
         prefixIcon: widget.prefixIcon != null

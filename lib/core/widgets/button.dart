@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 import '../../constant.dart';
 import '../utils/text_styles.dart';
@@ -7,11 +8,13 @@ class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final Size size;
+  final bool isLoading;
   const CustomButton({
     super.key,
     required this.text,
     required this.onPressed,
     required this.size,
+    this.isLoading = false,
   });
 
   @override
@@ -25,7 +28,13 @@ class CustomButton extends StatelessWidget {
         ),
       ),
       onPressed: onPressed,
-      child: Text(text, style: CustomTextStyles.style16Medium),
+      child: isLoading
+          ? LoadingIndicator(
+              indicatorType: Indicator.ballSpinFadeLoader,
+              colors: [Constant.scaffoldColor],
+              strokeWidth: 1.5,
+            )
+          : Text(text, style: CustomTextStyles.style16Medium),
     );
   }
 }

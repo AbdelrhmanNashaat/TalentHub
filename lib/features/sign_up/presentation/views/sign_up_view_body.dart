@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hire_me/core/common/functions.dart';
 import 'package:hire_me/features/sign_up/presentation/manager/sign_up_cubit/sign_up_cubit.dart';
-import '../../../../core/common/functions.dart';
-import '../../../../core/utils/assets.dart';
 import '../../../../core/utils/text_styles.dart';
 import '../../../../core/widgets/button.dart';
 import '../../../../core/widgets/text_field.dart';
-import '../../../sign_in/presentation/views/sign_in_view.dart';
+import '../manager/sign_up_cubit/sign_up_state.dart';
+import 'widgets/nav_to_login.dart';
+import 'widgets/sign_up_image.dart';
 
-class SignUpViewBody extends StatelessWidget {
+class SignUpViewBody extends StatefulWidget {
   const SignUpViewBody({super.key});
 
+  @override
+  State<SignUpViewBody> createState() => _SignUpViewBodyState();
+}
+
+class _SignUpViewBodyState extends State<SignUpViewBody> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -19,6 +26,7 @@ class SignUpViewBody extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: SingleChildScrollView(
         child: Form(
+          key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -30,37 +38,115 @@ class SignUpViewBody extends StatelessWidget {
               CustomTextField(
                 hintText: 'Name',
                 prefixIcon: Icons.person,
-                validationValue: 'Name',
+                validationValue: (value) {
+                  if (value!.isEmpty) {
+                    return 'Name is required';
+                  }
+                  return null;
+                },
                 controller: signUpCubit.nameController,
               ),
               const SizedBox(height: 25),
               CustomTextField(
                 hintText: 'Email',
                 prefixIcon: Icons.email,
-                validationValue: 'Email',
+                validationValue: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Email is required';
+                  }
+                  final emailValid = RegExp(
+                          r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                      .hasMatch(value);
+                  if (!emailValid) {
+                    return 'Enter a valid email';
+                  }
+                  return null;
+                },
                 controller: signUpCubit.emailController,
               ),
               const SizedBox(height: 25),
               CustomTextField(
-                hintText: 'Password',
-                obscureText: true,
-                prefixIcon: Icons.lock,
-                validationValue: 'Password',
                 controller: signUpCubit.passwordController,
+                hintText: 'password',
+                prefixIcon: Icons.lock,
+                obscureText: true,
+                validationValue: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Password is required';
+                  }
+                  if (value.length < 6) {
+                    return 'Password must be at least 6 characters';
+                  }
+                  if (!RegExp(r'[A-Z]').hasMatch(value)) {
+                    return 'Password must contain at least one uppercase letter';
+                  }
+                  if (!RegExp(r'[0-9]').hasMatch(value)) {
+                    return 'Password must contain at least one number';
+                  }
+                  if (!RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value)) {
+                    return 'Password must contain at least one special character';
+                  }
+                  return null;
+                },
               ),
               const SizedBox(height: 25),
               CustomTextField(
                 hintText: 'Confirm Password',
                 obscureText: true,
                 prefixIcon: Icons.lock,
-                validationValue: 'Confirm Password',
+                validationValue: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Confirm Password is required';
+                  }
+                  if (value != signUpCubit.passwordController.text) {
+                    return 'Passwords do not match';
+                  }
+                  return null;
+                },
                 controller: signUpCubit.confirmPasswordController,
               ),
               const SizedBox(height: 25),
-              CustomButton(
-                text: 'Sign Up',
-                onPressed: () {},
-                size: size,
+              BlocConsumer<SignUpCubit, SignUpState>(
+                listener: (context, state) {
+                  if (state is SignUpSuccess) {
+                    CommonFunctions commonFunctions = CommonFunctions();
+                    commonFunctions.showToastMessage(
+                      msg: 'Please verify your email.',
+                      context: context,
+                    );
+                  }
+                  if (state is SignUpFailure) {
+                    String errorMessage = state.errorMessage;
+                    switch (errorMessage) {
+                      case 'email-already-in-use':
+                        errorMessage = 'Email already in use';
+                        break;
+                      case 'weak-password':
+                        errorMessage = 'Password is too weak';
+                        break;
+                      default:
+                        errorMessage =
+                            'An error occurred, please try again later!';
+                    }
+                    CommonFunctions().showToastMessage(
+                      msg: errorMessage,
+                      context: context,
+                      color: Colors.red,
+                    );
+                  }
+                },
+                builder: (context, state) {
+                  return CustomButton(
+                    isLoading: state is SignUpLoading ? true : false,
+                    text: 'Sign Up',
+                    onPressed: () {
+                      if (_formKey.currentState!.validate()) {
+                        signUpCubit.signUp();
+                      }
+                    },
+                    size: size,
+                  );
+                },
               ),
               const SizedBox(height: 25),
               const NavToLoginWidget(),
@@ -68,50 +154,6 @@ class SignUpViewBody extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-}
-
-class NavToLoginWidget extends StatelessWidget {
-  const NavToLoginWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text('Already have an account? ',
-            style: CustomTextStyles.style16Medium),
-        GestureDetector(
-          onTap: () => CommonFunctions.navWithReplacement(
-            context: context,
-            widget: const SignInView(),
-          ),
-          child: Text(
-            'Sign in',
-            style: CustomTextStyles.style16Medium
-                .copyWith(color: Colors.blue, fontWeight: FontWeight.bold),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class SignUpImage extends StatelessWidget {
-  const SignUpImage({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Image.asset(Assets.signUpImage),
-      ],
     );
   }
 }

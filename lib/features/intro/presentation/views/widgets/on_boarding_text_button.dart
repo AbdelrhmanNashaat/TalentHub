@@ -12,8 +12,8 @@ class OnBoardingTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () => CommonFunctions.navWithReplacement(
-          context: context, widget: const SignInView()),
+      onPressed: () => CommonFunctions()
+          .navWithReplacement(context: context, widget: const SignInView()),
       child: Text('Skip', style: CustomTextStyles.style20Medium),
     );
   }

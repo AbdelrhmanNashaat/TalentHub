@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hire_me/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class CommonFunctions {
-  static void navWithReplacement({
+  void navWithReplacement({
     required BuildContext context,
     required Widget widget,
   }) {
@@ -21,7 +23,7 @@ class CommonFunctions {
             child: child,
           );
         },
-        transitionDuration: const Duration(milliseconds: 500),
+        transitionDuration: const Duration(milliseconds: 800),
       ),
     );
   }
@@ -39,5 +41,21 @@ class CommonFunctions {
   Future<void> removeData({required String key}) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.remove(key);
+  }
+
+  Future<bool?> showToastMessage(
+      {required String msg,
+      required context,
+      double fontSize = 14,
+      Color? color}) {
+    return Fluttertoast.showToast(
+      msg: msg,
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.BOTTOM,
+      timeInSecForIosWeb: 1,
+      backgroundColor: color ?? Constant.iconColor,
+      textColor: Colors.white,
+      fontSize: fontSize,
+    );
   }
 }

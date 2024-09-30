@@ -18,7 +18,7 @@ class SplashImageWidget extends StatelessWidget {
         effects: [
           SlideEffect(duration: 1200.ms),
         ],
-        onComplete: (controller) => CommonFunctions.navWithReplacement(
+        onComplete: (controller) => CommonFunctions().navWithReplacement(
             context: context, widget: const OnBoardingView()),
         child: Image.asset(
           Assets.hireImage,

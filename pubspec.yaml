@@ -37,8 +37,10 @@ dependencies:
   flutter_animate: ^4.5.0
   flutter_bloc: ^8.1.6
   flutter_svg: ^2.0.10+1
+  fluttertoast: ^8.2.8
   get_it: ^8.0.0
   google_fonts: ^6.2.1
+  loading_indicator: ^3.1.1
   shared_preferences: ^2.3.2
   smooth_page_indicator: ^1.2.0+3
 
