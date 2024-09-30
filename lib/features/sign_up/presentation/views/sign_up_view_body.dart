@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hire_me/core/common/functions.dart';
+import 'package:hire_me/features/sign_in/presentation/views/sign_in_view.dart';
 import 'package:hire_me/features/sign_up/presentation/manager/sign_up_cubit/sign_up_cubit.dart';
 import '../../../../core/utils/text_styles.dart';
 import '../../../../core/widgets/button.dart';
@@ -113,6 +114,15 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     commonFunctions.showToastMessage(
                       msg: 'Please verify your email.',
                       context: context,
+                    );
+                    Future.delayed(
+                      const Duration(seconds: 2),
+                      () {
+                        commonFunctions.navWithReplacement(
+                          context: context,
+                          pageName: const SignInView(),
+                        );
+                      },
                     );
                   }
                   if (state is SignUpFailure) {

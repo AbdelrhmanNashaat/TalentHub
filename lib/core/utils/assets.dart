@@ -10,4 +10,6 @@ class Assets {
   static const String loginImage = 'assets/images/loginImage.png';
   static const String signUpImage = 'assets/images/signUpImage.png';
   static const String forgetPasswordImage = 'assets/images/resetPassImage.png';
+  static const String newPassword = 'assets/images/newPassword.png';
+  static const String updatePassword = 'assets/images/passwordUpdated.png';
 }
