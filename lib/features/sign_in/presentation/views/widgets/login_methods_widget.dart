@@ -17,8 +17,8 @@ class LoginMethodsWidget extends StatelessWidget {
           onTap: onTap,
           child: Image.asset(
             imagePath,
-            width: 50,
-            height: 50,
+            width: 46,
+            height: 46,
           ),
         ),
       ],

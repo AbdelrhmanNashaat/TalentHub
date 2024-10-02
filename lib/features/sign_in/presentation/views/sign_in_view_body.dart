@@ -100,11 +100,14 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               ),
               const SizedBox(height: 45),
               Center(
-                  child: Text('or sign in with',
-                      style: CustomTextStyles.style16Medium)),
-              const SizedBox(height: 20),
+                child: Text(
+                  'or sign in with',
+                  style: CustomTextStyles.style16Medium.copyWith(fontSize: 18),
+                ),
+              ),
+              const SizedBox(height: 30),
               const LoginMethodsRow(),
-              const SizedBox(height: 25),
+              const SizedBox(height: 30),
               const NavToSignUp(),
             ],
           ),

@@ -14,7 +14,10 @@ class NavToSignUp extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text('Don\'t have an account? ', style: CustomTextStyles.style16Medium),
+        Text(
+          'Don\'t have an account? ',
+          style: CustomTextStyles.style16Medium.copyWith(fontSize: 18),
+        ),
         GestureDetector(
           onTap: () => CommonFunctions().navWithReplacement(
             context: context,
