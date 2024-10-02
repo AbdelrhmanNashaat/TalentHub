@@ -8,7 +8,7 @@ class CustomTextField extends StatefulWidget {
   final IconData? prefixIcon;
   final String? Function(String?)? validationValue;
   final TextEditingController controller;
-
+  final TextInputType? keyboardType;
   const CustomTextField({
     super.key,
     required this.hintText,
@@ -16,6 +16,7 @@ class CustomTextField extends StatefulWidget {
     this.prefixIcon,
     this.validationValue,
     required this.controller,
+    this.keyboardType,
   });
 
   @override
@@ -34,6 +35,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      keyboardType: widget.keyboardType,
       controller: widget.controller,
       validator: widget.validationValue,
       obscureText: _obscureText,

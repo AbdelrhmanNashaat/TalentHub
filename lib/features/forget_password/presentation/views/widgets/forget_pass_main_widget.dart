@@ -32,6 +32,7 @@ class _ForgetPassMainWidgetState extends State<ForgetPassMainWidget> {
         child: Column(
           children: [
             CustomTextField(
+              keyboardType: TextInputType.emailAddress,
               hintText: 'Email',
               prefixIcon: Icons.email,
               controller: bloc.emailController,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hire_me/core/utils/text_styles.dart';
+import 'package:hire_me/features/home/presentation/views/search_view.dart';
 import '../../../../core/common/functions.dart';
 import '../../../../core/widgets/button.dart';
 import '../../../../core/widgets/text_field.dart';
@@ -38,6 +39,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               Text('Welcome back!', style: CustomTextStyles.style14Light),
               const SizedBox(height: 25),
               CustomTextField(
+                keyboardType: TextInputType.emailAddress,
                 hintText: 'Email',
                 prefixIcon: Icons.email,
                 controller: bloc.emailController,
@@ -50,6 +52,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
               ),
               const SizedBox(height: 25),
               CustomTextField(
+                keyboardType: TextInputType.visiblePassword,
                 hintText: 'Password',
                 obscureText: true,
                 prefixIcon: Icons.lock,
@@ -75,9 +78,9 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                     );
                   }
                   if (state is SignInWithEmailAndPassSuccess) {
-                    CommonFunctions().showToastMessage(
-                      msg: 'Success',
+                    CommonFunctions().navWithReplacement(
                       context: context,
+                      pageName: const SearchView(),
                     );
                   }
                 },

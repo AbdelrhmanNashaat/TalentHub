@@ -37,6 +37,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               Text('Welcome to ', style: CustomTextStyles.style14Light),
               const SizedBox(height: 25),
               CustomTextField(
+                keyboardType: TextInputType.name,
                 hintText: 'Name',
                 prefixIcon: Icons.person,
                 validationValue: (value) {
@@ -49,6 +50,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               ),
               const SizedBox(height: 25),
               CustomTextField(
+                keyboardType: TextInputType.emailAddress,
                 hintText: 'Email',
                 prefixIcon: Icons.email,
                 validationValue: (value) {
@@ -67,6 +69,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               ),
               const SizedBox(height: 25),
               CustomTextField(
+                keyboardType: TextInputType.visiblePassword,
                 controller: signUpCubit.passwordController,
                 hintText: 'password',
                 prefixIcon: Icons.lock,
@@ -92,6 +95,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
               ),
               const SizedBox(height: 25),
               CustomTextField(
+                keyboardType: TextInputType.visiblePassword,
                 hintText: 'Confirm Password',
                 obscureText: true,
                 prefixIcon: Icons.lock,
