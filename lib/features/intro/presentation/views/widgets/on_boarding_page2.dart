@@ -4,7 +4,7 @@ import 'package:hire_me/core/utils/text_styles.dart';
 
 import '../../../../../core/utils/assets.dart';
 import 'indicator.dart';
-import 'on_boarding_bottom_section.dart';
+import 'on_boarding_skip_button.dart';
 
 class OnBoardingPage2 extends StatelessWidget {
   final Size size;
@@ -36,9 +36,16 @@ class OnBoardingPage2 extends StatelessWidget {
               ],
             ),
             const Spacer(),
-            OnBoardingBottomSection(controller: controller),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                OnBoardingNextButtonButton(controller: controller),
+              ],
+            ),
             SizedBox(height: size.height * 0.02),
-            Center(child: DotsIndicatorWidget(controller: controller)),
+            Center(
+              child: DotsIndicatorWidget(controller: controller),
+            ),
             SizedBox(height: size.height * 0.04),
           ],
         ),

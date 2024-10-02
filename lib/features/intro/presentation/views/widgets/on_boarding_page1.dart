@@ -27,9 +27,8 @@ class OnBoardingPage1 extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: OnBoardingBottomSection(controller: controller),
           ),
-          SizedBox(height: size.height * 0.02),
           DotsIndicatorWidget(controller: controller),
-          SizedBox(height: size.height * 0.04),
+          const Spacer(),
         ],
       ),
     );

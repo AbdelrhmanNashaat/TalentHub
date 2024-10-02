@@ -118,10 +118,12 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     Future.delayed(
                       const Duration(seconds: 2),
                       () {
-                        commonFunctions.navWithReplacement(
-                          context: context,
-                          pageName: const SignInView(),
-                        );
+                        if (context.mounted) {
+                          commonFunctions.navWithReplacement(
+                            context: context,
+                            pageName: const SignInView(),
+                          );
+                        }
                       },
                     );
                   }

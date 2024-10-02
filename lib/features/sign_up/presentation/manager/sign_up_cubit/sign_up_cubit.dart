@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hire_me/core/common/functions.dart';
 import 'package:hire_me/core/database/shared_preferences_keys.dart';
+import '../../../../../core/services/services_locator.dart';
 import 'sign_up_state.dart';
 
 class SignUpCubit extends Cubit<SignUpState> {
@@ -21,7 +22,7 @@ class SignUpCubit extends Cubit<SignUpState> {
         key: SharedPreferencesKeys().userName,
       );
       emit(SignUpLoading());
-      UserCredential userCredential = await FirebaseAuth.instance
+      UserCredential userCredential = await getIt<FirebaseAuth>()
           .createUserWithEmailAndPassword(
               email: emailController.text, password: passwordController.text);
       User? user = userCredential.user;

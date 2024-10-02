@@ -10,27 +10,25 @@ class CustomOnBoardingHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Image.asset(Assets.onBoarding1Image1),
-          const Spacer(),
-          Center(
-            child: Text(
-              'Find Your Dream Job',
-              style: CustomTextStyles.style30Bold,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Image.asset(Assets.onBoarding1Image1),
+        Center(
+          child: Text(
+            'Find Your Dream Job',
+            style: CustomTextStyles.style30Bold,
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Image.asset(
+              Assets.onBoarding1Image2,
             ),
-          ),
-          const Spacer(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Image.asset(Assets.onBoarding1Image2),
-            ],
-          ),
-        ],
-      ),
+          ],
+        ),
+      ],
     );
   }
 }
