@@ -8,6 +8,7 @@ class FireBaseServices {
   Future<UserCredential?> loginWithGoogle() async {
     try {
       final googleUser = await GoogleSignIn().signIn();
+      log('google sign in: ${googleUser?.id}');
       final googleAuth = await googleUser?.authentication;
       final cred = GoogleAuthProvider.credential(
         idToken: googleAuth?.idToken,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hire_me/constant.dart';
 import 'package:hire_me/core/common/functions.dart';
 
 import '../../../../../core/utils/text_styles.dart';
@@ -14,7 +15,10 @@ class OnBoardingTextButton extends StatelessWidget {
     return TextButton(
       onPressed: () => CommonFunctions()
           .navWithReplacement(context: context, pageName: const SignInView()),
-      child: Text('Skip', style: CustomTextStyles.style20Medium),
+      child: Text('Skip',
+          style: CustomTextStyles.style20Medium.copyWith(
+            color: Constant.primaryColor,
+          )),
     );
   }
 }
