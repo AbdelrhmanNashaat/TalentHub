@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">HireMe</string>
+  <string name="facebook_app_id">848037024129754</string>
+  <string name="fb_login_protocol_scheme">fb848037024129754</string>
+  <string name="facebook_client_token">38f495b6d659719c9b98f4d2c76e958f</string>
+</resources>
