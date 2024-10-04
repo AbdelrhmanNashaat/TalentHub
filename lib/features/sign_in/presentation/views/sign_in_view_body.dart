@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hire_me/core/utils/text_styles.dart';
-import 'package:hire_me/features/home/presentation/views/search_view.dart';
 import '../../../../core/common/functions.dart';
 import '../../../../core/widgets/button.dart';
 import '../../../../core/widgets/text_field.dart';
@@ -78,10 +77,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                     );
                   }
                   if (state is SignInWithEmailAndPassSuccess) {
-                    CommonFunctions().navWithReplacement(
-                      context: context,
-                      pageName: const SearchView(),
-                    );
+                    CommonFunctions().navAfterLoginSuccess(context: context);
                   }
                 },
                 builder: (context, state) {

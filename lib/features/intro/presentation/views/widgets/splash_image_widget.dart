@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-import '../../../../../core/common/functions.dart';
 import '../../../../../core/utils/assets.dart';
-import '../on_boarding_view.dart';
 
 class SplashImageWidget extends StatelessWidget {
   const SplashImageWidget({
@@ -16,10 +14,8 @@ class SplashImageWidget extends StatelessWidget {
       child: Animate(
         autoPlay: true,
         effects: [
-          SlideEffect(duration: 1200.ms),
+          SlideEffect(duration: 800.ms),
         ],
-        onComplete: (controller) => CommonFunctions().navWithReplacement(
-            context: context, pageName: const OnBoardingView()),
         child: Image.asset(
           Assets.hireImage,
         ),

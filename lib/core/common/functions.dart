@@ -3,6 +3,11 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hire_me/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../features/home/presentation/views/search_view.dart';
+import '../database/cache_helper.dart';
+import '../database/shared_preferences_keys.dart';
+import '../services/services_locator.dart';
+
 class CommonFunctions {
   void navWithReplacement({
     required BuildContext context,
@@ -80,6 +85,21 @@ class CommonFunctions {
       backgroundColor: color ?? Constant.iconColor,
       textColor: Colors.white,
       fontSize: fontSize,
+    );
+  }
+
+  void navAfterLoginSuccess({required BuildContext context}) async {
+    await getIt<CacheHelper>()
+        .saveData(key: getIt.get<SharedPreferencesKeys>().isLogin, value: true)
+        .then(
+      (value) {
+        if (context.mounted) {
+          CommonFunctions().navWithReplacement(
+            context: context,
+            pageName: const SearchView(),
+          );
+        }
+      },
     );
   }
 }
