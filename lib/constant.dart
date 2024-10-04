@@ -9,4 +9,5 @@ class Constant {
   static Color borderColor = const Color(0xFF457B9D).withOpacity(0.5);
   static Color fillColor = const Color(0xFFA8DADC).withOpacity(0.3);
   static Color scaffoldColor = const Color(0xFFF1FAEE);
+  static Color navBarColor = const Color(0xFFA8DADC);
 }
