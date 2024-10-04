@@ -38,8 +38,6 @@ dependencies:
   flutter_animate: ^4.5.0
   flutter_bloc: ^8.1.6
   flutter_facebook_auth: ^7.1.1
-  flutter_otp_text_field: ^1.2.0
-  flutter_svg: ^2.0.10+1
   fluttertoast: ^8.2.8
   get_it: ^8.0.0
   google_fonts: ^6.2.1
@@ -47,7 +45,7 @@ dependencies:
   loading_indicator: ^3.1.1
   shared_preferences: ^2.3.2
   smooth_page_indicator: ^1.2.0+3
-  timer_button: ^2.1.1
+  flutter_launcher_icons: ^0.13.1
 
 dev_dependencies:
   flutter_lints: ^4.0.0
@@ -90,3 +88,9 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/hire.png"
+flutter_intl:
+  enabled: true
