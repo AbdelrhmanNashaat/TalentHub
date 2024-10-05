@@ -9,6 +9,8 @@ class CustomTextField extends StatefulWidget {
   final String? Function(String?)? validationValue;
   final TextEditingController controller;
   final TextInputType? keyboardType;
+  final Color? fillColor;
+  final Color? hintTextColor;
   const CustomTextField({
     super.key,
     required this.hintText,
@@ -17,6 +19,8 @@ class CustomTextField extends StatefulWidget {
     this.validationValue,
     required this.controller,
     this.keyboardType,
+    this.fillColor,
+    this.hintTextColor,
   });
 
   @override
@@ -57,11 +61,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
               )
             : null,
         filled: true,
-        fillColor: Constant.fillColor,
+        fillColor: widget.fillColor ?? Constant.fillColor,
         hintText: widget.hintText,
         hintStyle: CustomTextStyles.style16Medium.copyWith(
           fontSize: 14,
-          color: Constant.iconColor,
+          color: widget.hintTextColor ?? Constant.iconColor,
         ),
         focusedBorder: borderMethod(),
         enabledBorder: borderMethod(),

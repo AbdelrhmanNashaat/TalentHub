@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:loading_indicator/loading_indicator.dart';
 
 import '../../constant.dart';
 import '../utils/text_styles.dart';
+import 'loading.dart';
 
 class CustomButton extends StatelessWidget {
   final String text;
@@ -31,11 +31,7 @@ class CustomButton extends StatelessWidget {
       ),
       onPressed: onPressed,
       child: isLoading
-          ? LoadingIndicator(
-              indicatorType: Indicator.ballSpinFadeLoader,
-              colors: [Constant.scaffoldColor],
-              strokeWidth: 1.5,
-            )
+          ? const CustomLoadingWidget()
           : Text(text, style: CustomTextStyles.style16Medium),
     );
   }

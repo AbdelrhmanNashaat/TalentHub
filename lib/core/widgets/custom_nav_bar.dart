@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hire_me/constant.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
+import '../../features/home/presentation/views/search_view_body.dart';
+
 class BottomNavBarWidget extends StatelessWidget {
   const BottomNavBarWidget({super.key});
 
@@ -19,7 +21,7 @@ class BottomNavBarWidget extends StatelessWidget {
       navBarStyle: NavBarStyle.style9,
       context,
       screens: const [
-        Scaffold(),
+        SafeArea(child: SearchViewBody()),
         Scaffold(),
         Scaffold(),
         Scaffold(),
@@ -29,27 +31,31 @@ class BottomNavBarWidget extends StatelessWidget {
           icon: const Icon(Icons.home),
           title: 'Home',
           activeColorPrimary: Colors.black,
+          activeColorSecondary: Constant.iconColor,
           inactiveColorPrimary: Colors.grey,
           contentPadding: 6,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.search),
           title: 'Search',
-          activeColorPrimary: Colors.black,
+          activeColorPrimary: Constant.iconColor,
+          activeColorSecondary: Colors.black,
           inactiveColorPrimary: Colors.grey,
           contentPadding: 6,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.add),
           title: 'Add',
-          activeColorPrimary: Colors.black,
+          activeColorPrimary: Constant.iconColor,
+          activeColorSecondary: Colors.black,
           inactiveColorPrimary: Colors.grey,
           contentPadding: 6,
         ),
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.person),
           title: 'Profile',
-          activeColorPrimary: Colors.black,
+          activeColorPrimary: Constant.iconColor,
+          activeColorSecondary: Colors.black,
           inactiveColorPrimary: Colors.grey,
           contentPadding: 6,
         ),
