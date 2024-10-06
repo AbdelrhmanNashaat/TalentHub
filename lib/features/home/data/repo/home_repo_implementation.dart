@@ -6,8 +6,9 @@ import 'package:hire_me/core/errors/failures.dart';
 import 'package:hire_me/core/services/api_services.dart';
 import 'package:hire_me/features/home/data/model/company_info.dart';
 import 'package:hire_me/features/home/data/model/company_jobs.dart';
-import 'package:hire_me/features/home/data/model/job_model.dart';
 import 'package:hire_me/features/home/data/repo/home_repo.dart';
+
+import '../model/job_search_reponse_model.dart';
 
 class HomeRepoImplementation extends HomeRepo {
   final ApiServices apiServices;

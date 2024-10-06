@@ -1,4 +1,4 @@
-import 'job_model.dart';
+import 'job_hit_model.dart';
 
 class JobSearchResponse {
   final int count;

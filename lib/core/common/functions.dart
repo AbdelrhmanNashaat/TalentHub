@@ -4,10 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hire_me/constant.dart';
+import 'package:hire_me/features/home/presentation/views/home_view.dart';
 import 'package:hire_me/features/sign_in/data/model/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../features/home/presentation/views/search_view.dart';
 import '../database/cache_helper.dart';
 import '../database/shared_preferences_keys.dart';
 import '../services/services_locator.dart';
@@ -100,7 +99,7 @@ class CommonFunctions {
         if (context.mounted) {
           CommonFunctions().navWithReplacement(
             context: context,
-            pageName: const SearchView(),
+            pageName: const HomeView(),
           );
         }
       },

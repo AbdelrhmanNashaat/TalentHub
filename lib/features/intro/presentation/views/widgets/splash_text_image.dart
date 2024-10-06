@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:hire_me/features/home/presentation/views/search_view.dart';
+import 'package:hire_me/features/home/presentation/views/home_view.dart';
 import '../../../../../core/common/functions.dart';
 import '../../../../../core/database/cache_helper.dart';
 import '../../../../../core/database/shared_preferences_keys.dart';
@@ -26,7 +26,7 @@ class SplashTextWidget extends StatelessWidget {
             false;
         CommonFunctions().navWithReplacement(
           context: context,
-          pageName: hasLogin ? const SearchView() : const OnBoardingView(),
+          pageName: hasLogin ? const HomeView() : const OnBoardingView(),
         );
       },
       child: Text(
