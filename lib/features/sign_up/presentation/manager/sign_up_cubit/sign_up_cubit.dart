@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hire_me/core/common/functions.dart';
 import 'package:hire_me/core/database/shared_preferences_keys.dart';
+import 'package:hire_me/features/sign_in/data/model/user_model.dart';
 import '../../../../../core/services/services_locator.dart';
 import 'sign_up_state.dart';
 
@@ -17,9 +18,9 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   Future<void> signUp() async {
     try {
-      CommonFunctions().saveData(
-        data: nameController.text,
-        key: SharedPreferencesKeys().userName,
+      CommonFunctions().saveUserModel(
+        key: getIt.get<SharedPreferencesKeys>().userModel,
+        model: UserModel(name: nameController.text, imagePath: null),
       );
       emit(SignUpLoading());
       UserCredential userCredential = await getIt<FirebaseAuth>()

@@ -1,6 +1,10 @@
+import 'dart:developer';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hire_me/constant.dart';
+import 'package:hire_me/features/sign_in/data/model/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/home/presentation/views/search_view.dart';
@@ -101,5 +105,44 @@ class CommonFunctions {
         }
       },
     );
+  }
+
+  Future<void> saveUserModel(
+      {required String key, required UserModel model}) async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.setString('${key}_name', model.name ?? '');
+    await sharedPreferences.setString(
+        '${key}_imagePath', model.imagePath ?? '');
+  }
+
+  Future<UserModel?> getUserModel({required String key}) async {
+    final sharedPreferences = await SharedPreferences.getInstance();
+    String? name = sharedPreferences.getString('${key}_name');
+    String? imagePath = sharedPreferences.getString('${key}_imagePath');
+    if (name != null) {
+      log('name : $name');
+      log('image : $imagePath');
+      return UserModel(name: name, imagePath: imagePath);
+    }
+
+    return null;
+  }
+
+  Future<UserCredential> saveUserDataFromCred(OAuthCredential cred) async {
+    final userCredential =
+        await getIt<FirebaseAuth>().signInWithCredential(cred);
+    final user = userCredential.user;
+    if (user != null) {
+      final userModel = UserModel(
+        name: user.displayName,
+        imagePath: user.photoURL,
+      );
+      await saveUserModel(
+        key: getIt<SharedPreferencesKeys>().userModel,
+        model: userModel,
+      );
+      await getUserModel(key: getIt<SharedPreferencesKeys>().userModel);
+    }
+    return userCredential;
   }
 }

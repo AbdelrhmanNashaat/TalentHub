@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hire_me/constant.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
-
 import '../../features/home/presentation/views/search_view_body.dart';
 
 class BottomNavBarWidget extends StatelessWidget {
@@ -17,7 +16,7 @@ class BottomNavBarWidget extends StatelessWidget {
           topRight: Radius.circular(12),
         ),
       ),
-      navBarHeight: 55,
+      navBarHeight: 60,
       navBarStyle: NavBarStyle.style9,
       context,
       screens: const [
@@ -30,9 +29,9 @@ class BottomNavBarWidget extends StatelessWidget {
         PersistentBottomNavBarItem(
           icon: const Icon(Icons.home),
           title: 'Home',
-          activeColorPrimary: Colors.black,
+          activeColorPrimary: Constant.scaffoldColor,
           activeColorSecondary: Constant.iconColor,
-          inactiveColorPrimary: Colors.grey,
+          inactiveColorPrimary: Colors.black,
           contentPadding: 6,
         ),
         PersistentBottomNavBarItem(
@@ -40,7 +39,7 @@ class BottomNavBarWidget extends StatelessWidget {
           title: 'Search',
           activeColorPrimary: Constant.iconColor,
           activeColorSecondary: Colors.black,
-          inactiveColorPrimary: Colors.grey,
+          inactiveColorPrimary: Colors.black,
           contentPadding: 6,
         ),
         PersistentBottomNavBarItem(
@@ -48,7 +47,7 @@ class BottomNavBarWidget extends StatelessWidget {
           title: 'Add',
           activeColorPrimary: Constant.iconColor,
           activeColorSecondary: Colors.black,
-          inactiveColorPrimary: Colors.grey,
+          inactiveColorPrimary: Colors.black,
           contentPadding: 6,
         ),
         PersistentBottomNavBarItem(
@@ -56,7 +55,7 @@ class BottomNavBarWidget extends StatelessWidget {
           title: 'Profile',
           activeColorPrimary: Constant.iconColor,
           activeColorSecondary: Colors.black,
-          inactiveColorPrimary: Colors.grey,
+          inactiveColorPrimary: Colors.black,
           contentPadding: 6,
         ),
       ],

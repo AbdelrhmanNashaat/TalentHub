@@ -16,15 +16,11 @@ class SearchViewBody extends StatelessWidget {
           const SizedBox(height: 40),
           const CustomAppTitle(),
           const Spacer(),
-          Stack(
-            children: [
-              CustomTextField(
-                hintText: 'Search for a job',
-                controller: TextEditingController(),
-                fillColor: Constant.borderColor,
-                hintTextColor: Constant.primaryColor,
-              ),
-            ],
+          CustomTextField(
+            hintText: 'Search for a job',
+            controller: TextEditingController(),
+            fillColor: Constant.borderColor,
+            hintTextColor: Constant.primaryColor,
           ),
           const Spacer(),
         ],
