@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hire_me/features/sign_in/presentation/manager/sign_in_with_google_cubit/sign_in_with_google_cubit.dart';
 import '../../../../constant.dart';
 import '../manager/sign_in_with_email_and_pass_cubit/sign_in_with_email_and_pass_cubit.dart';
 import '../manager/sign_in_with_facebook_cubit/sign_in_with_facebook_cubit.dart';
@@ -17,6 +18,9 @@ class SignInView extends StatelessWidget {
         ),
         BlocProvider<SignInWithFacebookCubit>(
           create: (context) => SignInWithFacebookCubit(),
+        ),
+        BlocProvider<SignInWithGoogleCubit>(
+          create: (context) => SignInWithGoogleCubit(),
         ),
       ],
       child: Scaffold(

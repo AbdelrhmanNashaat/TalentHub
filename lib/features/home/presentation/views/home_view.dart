@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hire_me/constant.dart';
 import 'package:hire_me/features/home/presentation/views/home_view_body.dart';
 
@@ -32,13 +33,13 @@ class _HomeViewState extends State<HomeView> {
       ),
       bottomNavigationBar: CurvedNavigationBar(
         index: _selectedIndex,
-        height: 60.0,
+        height: 55.0,
         items: <Widget>[
-          Icon(Icons.home, size: 30, color: _iconColor(0)),
-          Icon(Icons.edit, size: 30, color: _iconColor(1)),
-          Icon(Icons.explore, size: 30, color: _iconColor(2)),
-          Icon(Icons.notifications, size: 30, color: _iconColor(3)),
-          Icon(Icons.person, size: 30, color: _iconColor(4)),
+          Icon(FontAwesomeIcons.list, size: 22, color: _iconColor(0)),
+          Icon(FontAwesomeIcons.hotel, size: 22, color: _iconColor(1)),
+          Icon(FontAwesomeIcons.solidCompass, size: 28, color: _iconColor(2)),
+          Icon(FontAwesomeIcons.bell, color: _iconColor(3)),
+          Icon(FontAwesomeIcons.user, color: _iconColor(4)),
         ],
         color: Constant.navBarColor,
         buttonBackgroundColor: Constant.navBarColor,

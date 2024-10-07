@@ -22,11 +22,11 @@ class LoginMethodsWidget extends StatelessWidget {
           onTap: onTap,
           child: isLoading
               ? SizedBox(
-                  width: 46,
-                  height: 46,
+                  width: 42,
+                  height: 42,
                   child: CustomLoadingWidget(
                     color: [Constant.circleAvatar],
-                    indicatorType: Indicator.ballPulseSync,
+                    indicatorType: Indicator.ballBeat,
                   ),
                 )
               : Image.asset(

@@ -127,14 +127,15 @@ class CommonFunctions {
     return null;
   }
 
-  Future<UserCredential> saveUserDataFromCred(OAuthCredential cred) async {
+  Future<UserCredential> saveUserDataFromCred(
+      {required OAuthCredential cred, String? image}) async {
     final userCredential =
         await getIt<FirebaseAuth>().signInWithCredential(cred);
     final user = userCredential.user;
     if (user != null) {
       final userModel = UserModel(
         name: user.displayName,
-        imagePath: user.photoURL,
+        imagePath: image,
       );
       await saveUserModel(
         key: getIt<SharedPreferencesKeys>().userModel,

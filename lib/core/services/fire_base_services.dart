@@ -8,14 +8,17 @@ class FireBaseServices {
   Future<UserCredential?> loginWithGoogle() async {
     try {
       final googleUser = await GoogleSignIn().signIn();
-      log('Google sign in: ${googleUser?.id}');
-      final googleAuth = await googleUser?.authentication;
+      if (googleUser == null) {
+        return null;
+      }
+      final googleAuth = await googleUser.authentication;
       final cred = GoogleAuthProvider.credential(
-        idToken: googleAuth?.idToken,
-        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth.idToken,
+        accessToken: googleAuth.accessToken,
       );
-      UserCredential userCredential =
-          await CommonFunctions().saveUserDataFromCred(cred);
+      final googleProfile = googleUser.photoUrl;
+      UserCredential userCredential = await CommonFunctions()
+          .saveUserDataFromCred(cred: cred, image: googleProfile);
       return userCredential;
     } catch (ex) {
       log('Login with Google exception: ${ex.toString()}');
@@ -30,8 +33,12 @@ class FireBaseServices {
         final OAuthCredential facebookAuthCredential =
             FacebookAuthProvider.credential(
                 loginResult.accessToken!.tokenString);
+        final userData = await FacebookAuth.instance
+            .getUserData(fields: "name,email,picture.width(200)");
+        final String? profileImageUrl = userData["picture"]["data"]["url"];
         UserCredential userCredential = await CommonFunctions()
-            .saveUserDataFromCred(facebookAuthCredential);
+            .saveUserDataFromCred(
+                cred: facebookAuthCredential, image: profileImageUrl);
         return userCredential;
       } else {
         log('Failed to retrieve access token');
