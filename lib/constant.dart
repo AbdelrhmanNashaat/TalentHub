@@ -11,4 +11,5 @@ class Constant {
   static Color scaffoldColor = const Color(0xFFF1FAEE);
   static Color navBarColor = const Color(0xFFA8DADC);
   static Color searchHintTextColor = const Color(0xFF1D3557);
+  static Color offWhiteColor = const Color(0xFFE2DFD2);
 }

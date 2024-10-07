@@ -11,6 +11,8 @@ class CustomTextField extends StatefulWidget {
   final TextInputType? keyboardType;
   final Color? fillColor;
   final Color? hintTextColor;
+  final Widget? suffixIcon;
+  final TextStyle? textStyle;
   const CustomTextField({
     super.key,
     required this.hintText,
@@ -21,6 +23,8 @@ class CustomTextField extends StatefulWidget {
     this.keyboardType,
     this.fillColor,
     this.hintTextColor,
+    this.suffixIcon,
+    this.textStyle,
   });
 
   @override
@@ -47,26 +51,28 @@ class _CustomTextFieldState extends State<CustomTextField> {
         prefixIcon: widget.prefixIcon != null
             ? Icon(widget.prefixIcon, color: Constant.iconColor)
             : null,
-        suffixIcon: widget.obscureText
-            ? IconButton(
-                icon: Icon(
-                  _obscureText ? Icons.visibility_off : Icons.visibility,
-                  color: Constant.iconColor,
-                ),
-                onPressed: () {
-                  setState(() {
-                    _obscureText = !_obscureText;
-                  });
-                },
-              )
-            : null,
+        suffixIcon: widget.suffixIcon ??
+            (widget.obscureText
+                ? IconButton(
+                    icon: Icon(
+                      _obscureText ? Icons.visibility_off : Icons.visibility,
+                      color: Constant.iconColor,
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        _obscureText = !_obscureText;
+                      });
+                    },
+                  )
+                : null),
         filled: true,
         fillColor: widget.fillColor ?? Constant.fillColor,
         hintText: widget.hintText,
-        hintStyle: CustomTextStyles.style16Medium.copyWith(
-          fontSize: 14,
-          color: widget.hintTextColor ?? Constant.iconColor,
-        ),
+        hintStyle: widget.textStyle ??
+            CustomTextStyles.style16Medium.copyWith(
+              fontSize: 14,
+              color: widget.hintTextColor ?? Constant.iconColor,
+            ),
         focusedBorder: borderMethod(),
         enabledBorder: borderMethod(),
         errorBorder: borderErrorMethod(),

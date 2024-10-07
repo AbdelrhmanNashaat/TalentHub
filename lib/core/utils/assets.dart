@@ -13,4 +13,5 @@ class Assets {
   static const String newPassword = 'assets/images/newPassword.png';
   static const String updatePassword = 'assets/images/passwordUpdated.png';
   static const String searchEngine = 'assets/images/searchEngine.png';
+  static const String searchJobBg = 'assets/images/searchJobBg.png';
 }

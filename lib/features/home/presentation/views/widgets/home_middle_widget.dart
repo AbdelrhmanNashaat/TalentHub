@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hire_me/core/common/functions.dart';
+import 'package:hire_me/features/home/presentation/views/search_view.dart';
 
 import '../../../../../constant.dart';
 import '../../../../../core/utils/text_styles.dart';
@@ -26,18 +28,24 @@ class HomeMiddleWidget extends StatelessWidget {
           ),
           const SizedBox(height: 25),
           HomeCardWidget(
+            onTap: () => CommonFunctions().navWithoutReplacement(
+              context: context,
+              pageName: const SearchView(),
+            ),
             title: 'Search for a Job',
             textColor: Constant.primaryColor,
             backGroundColor: Constant.circleAvatar,
           ),
           const SizedBox(height: 15),
           HomeCardWidget(
+            onTap: () {},
             title: 'Explore Companies',
             textColor: Constant.scaffoldColor,
             backGroundColor: Constant.iconColor,
           ),
           const SizedBox(height: 15),
           HomeCardWidget(
+            onTap: () {},
             title: 'Search for a Job in specific Company',
             textColor: Constant.scaffoldColor,
             backGroundColor: Constant.primaryColor,
