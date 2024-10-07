@@ -10,7 +10,8 @@ class SearchJobCubit extends Cubit<SearchJobState> {
   final TextEditingController searchController = TextEditingController();
   Future<void> searchJob() async {
     emit(SearchJobLoading());
-    var data = await homeRepo.searchForAJob(query: searchController.text);
+    var data =
+        await homeRepo.searchForAJob(query: searchController.text.trim());
     data.fold(
         (failure) => emit(SearchJobFailure(errorMessage: failure.errorMessage)),
         (jobList) => emit(SearchJobSuccess(jobList: jobList)));

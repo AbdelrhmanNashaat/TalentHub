@@ -4,7 +4,7 @@ import 'package:hire_me/constant.dart';
 import 'package:hire_me/core/services/services_locator.dart';
 import 'package:hire_me/features/home/data/repo/home_repo_implementation.dart';
 import 'package:hire_me/features/home/presentation/manager/search_job_cubit/search_job_cubit.dart';
-import 'package:hire_me/features/home/presentation/views/search_view_body.dart';
+import 'package:hire_me/features/home/presentation/views/widgets/search_view_body.dart';
 
 class SearchView extends StatelessWidget {
   const SearchView({super.key});

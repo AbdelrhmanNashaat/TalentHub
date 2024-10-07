@@ -2,7 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hire_me/constant.dart';
-import 'package:hire_me/features/home/presentation/views/home_view_body.dart';
+import 'package:hire_me/features/home/presentation/views/widgets/home_view_body.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});

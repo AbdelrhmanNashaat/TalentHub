@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'widgets/home_middle_widget.dart';
-import 'widgets/home_top_widget.dart';
+import 'home_middle_widget.dart';
+import 'home_top_widget.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});

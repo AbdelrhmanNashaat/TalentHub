@@ -1,14 +1,14 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hire_me/constant.dart';
 import 'package:hire_me/core/common/functions.dart';
 import 'package:hire_me/core/utils/assets.dart';
 import 'package:hire_me/features/home/presentation/manager/search_job_cubit/search_job_cubit.dart';
+import 'package:hire_me/features/home/presentation/views/job_view.dart';
 import '../../../../../core/utils/text_styles.dart';
-import '../manager/search_job_cubit/search_job_state.dart';
-import 'widgets/search_bar.dart';
+import '../../../../../core/widgets/back_button.dart';
+import '../../manager/search_job_cubit/search_job_state.dart';
+import 'search_bar.dart';
 
 class SearchViewBody extends StatefulWidget {
   const SearchViewBody({super.key});
@@ -39,13 +39,9 @@ class _SearchViewBodyState extends State<SearchViewBody> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 8),
-                Row(
+                const Row(
                   children: [
-                    GestureDetector(
-                      onTap: () => Navigator.of(context).pop(),
-                      child: Icon(Icons.arrow_back_ios,
-                          color: Constant.primaryColor),
-                    ),
+                    CustomBackWidget(),
                   ],
                 ),
                 const Spacer(),
@@ -72,7 +68,13 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                           msg: state.errorMessage, context: context);
                     }
                     if (state is SearchJobSuccess) {
-                      log('SearchJobSuccess : ${state.jobList.hits.first.title}');
+                      CommonFunctions().navWithoutReplacement(
+                        context: context,
+                        pageName: JobView(
+                          jobList: state.jobList,
+                          search: bloc.searchController.text,
+                        ),
+                      );
                     }
                   },
                   builder: (context, state) {

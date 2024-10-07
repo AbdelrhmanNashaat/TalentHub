@@ -12,12 +12,16 @@ class SearchTextFiled extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final VoidCallback onTap;
+  final Color? fillColor;
+  final Color? hintTextColor;
   const SearchTextFiled({
     super.key,
     this.isLoading = false,
     required this.controller,
     required this.hintText,
     required this.onTap,
+    this.fillColor,
+    this.hintTextColor,
   });
 
   @override
@@ -32,11 +36,11 @@ class SearchTextFiled extends StatelessWidget {
       },
       textStyle: CustomTextStyles.style16Medium.copyWith(
         fontSize: 13,
-        color: Constant.iconColor,
+        color: hintTextColor ?? Constant.iconColor,
       ),
       hintText: hintText,
       controller: controller,
-      fillColor: Constant.scaffoldColor,
+      fillColor: fillColor ?? Constant.scaffoldColor,
       hintTextColor: Constant.primaryColor,
       suffixIcon: GestureDetector(
         onTap: onTap,
