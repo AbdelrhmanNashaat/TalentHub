@@ -3,7 +3,7 @@ import 'package:hire_me/core/errors/failures.dart';
 import 'package:hire_me/features/home/data/model/company_info.dart';
 import 'package:hire_me/features/home/data/model/company_jobs.dart';
 
-import '../model/job_search_reponse_model.dart';
+import '../model/job_search_response_model.dart';
 
 abstract class HomeRepo {
   Future<Either<Failure, JobSearchResponse>> searchForAJob(

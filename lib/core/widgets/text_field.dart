@@ -13,6 +13,7 @@ class CustomTextField extends StatefulWidget {
   final Color? hintTextColor;
   final Widget? suffixIcon;
   final TextStyle? textStyle;
+  final Color? errorColor;
   const CustomTextField({
     super.key,
     required this.hintText,
@@ -25,6 +26,7 @@ class CustomTextField extends StatefulWidget {
     this.hintTextColor,
     this.suffixIcon,
     this.textStyle,
+    this.errorColor,
   });
 
   @override
@@ -73,6 +75,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
               fontSize: 14,
               color: widget.hintTextColor ?? Constant.iconColor,
             ),
+        errorStyle: CustomTextStyles.style16Medium.copyWith(
+          fontSize: 14,
+          color: widget.errorColor ?? Colors.red,
+        ),
         focusedBorder: borderMethod(),
         enabledBorder: borderMethod(),
         errorBorder: borderErrorMethod(),

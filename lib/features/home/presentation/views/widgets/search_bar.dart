@@ -23,6 +23,13 @@ class SearchTextFiled extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomTextField(
+      errorColor: Constant.scaffoldColor,
+      validationValue: (value) {
+        if (value!.isEmpty) {
+          return 'Please enter something to search';
+        }
+        return null;
+      },
       textStyle: CustomTextStyles.style16Medium.copyWith(
         fontSize: 13,
         color: Constant.iconColor,
