@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hire_me/constant.dart';
@@ -72,7 +70,7 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                           msg: state.errorMessage, context: context);
                     }
                     if (state is SearchJobSuccess) {
-                      log('SearchJobSuccess : ${state.jobList.hits.first.title}');
+                      bloc.searchController.clear();
                     }
                   },
                   builder: (context, state) {

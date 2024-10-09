@@ -5,20 +5,16 @@ import '../../../../../constant.dart';
 import '../../../../../core/common/functions.dart';
 import '../../manager/search_job_cubit/search_job_cubit.dart';
 import '../../manager/search_job_cubit/search_job_state.dart';
-import 'job_view_body.dart';
 import 'search_bar.dart';
 
 class CustomSearchJobWidget extends StatelessWidget {
+  final SearchJobCubit bloc;
+  final GlobalKey<FormState> _formKey;
   const CustomSearchJobWidget({
     super.key,
     required this.bloc,
-    required this.widget,
     required GlobalKey<FormState> formKey,
   }) : _formKey = formKey;
-
-  final SearchJobCubit bloc;
-  final JobViewBody widget;
-  final GlobalKey<FormState> _formKey;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +34,7 @@ class CustomSearchJobWidget extends StatelessWidget {
             hintTextColor: Constant.searchHintTextColor,
             isLoading: state is SearchJobLoading ? true : false,
             controller: bloc.searchController,
-            hintText: widget.search,
+            hintText: bloc.searchController.text,
             onTap: () {
               if (_formKey.currentState!.validate()) {
                 bloc.searchJob();

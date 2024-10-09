@@ -71,7 +71,6 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                       CommonFunctions().navWithoutReplacement(
                         context: context,
                         pageName: JobView(
-                          jobList: state.jobList,
                           search: bloc.searchController.text,
                         ),
                       );

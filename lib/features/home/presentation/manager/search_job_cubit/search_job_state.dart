@@ -1,13 +1,8 @@
-import 'package:hire_me/features/home/data/model/job_search_response_model.dart';
-
 abstract class SearchJobState {}
 
 class SearchJobInitial extends SearchJobState {}
 
-class SearchJobSuccess extends SearchJobState {
-  final JobSearchResponse jobList;
-  SearchJobSuccess({required this.jobList});
-}
+class SearchJobSuccess extends SearchJobState {}
 
 class SearchJobLoading extends SearchJobState {}
 
