@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../core/utils/text_styles.dart';
 import '../../../../../core/widgets/back_button.dart';
-import '../../manager/search_job_cubit/search_job_cubit.dart';
+import '../../manager/search_job_cubit/search_job_state.dart';
 import 'search_widget.dart';
 
-class JobViewUpperSec extends StatelessWidget {
-  final GlobalKey<FormState> _formKey;
-  final SearchJobCubit bloc;
-  const JobViewUpperSec({
-    super.key,
-    required GlobalKey<FormState> formKey,
-    required this.bloc,
-  }) : _formKey = formKey;
+class JobViewUpperSec extends StatefulWidget {
+  final SearchJobState state;
+  final int jobCount;
+  const JobViewUpperSec(
+      {super.key, required this.state, required this.jobCount});
 
+  @override
+  State<JobViewUpperSec> createState() => _JobViewUpperSecState();
+}
+
+class _JobViewUpperSecState extends State<JobViewUpperSec> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
@@ -26,20 +28,22 @@ class JobViewUpperSec extends StatelessWidget {
               const SizedBox(height: 10),
               const CustomBackWidget(),
               const SizedBox(height: 20),
-              CustomSearchJobWidget(bloc: bloc, formKey: _formKey),
+              CustomSearchJobWidget(formKey: _formKey),
               const SizedBox(height: 4),
               Padding(
                 padding: const EdgeInsets.only(right: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(
-                      '${bloc.jobList.count} jobs found',
-                      style: CustomTextStyles.style16Medium.copyWith(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
+                    widget.state is SearchJobSuccess && widget.jobCount > 0
+                        ? Text(
+                            '${widget.jobCount} jobs found',
+                            style: CustomTextStyles.style16Medium.copyWith(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          )
+                        : const SizedBox(),
                   ],
                 ),
               ),

@@ -26,7 +26,6 @@ class _ApplyWidgetState extends State<ApplyWidget> {
   @override
   void initState() {
     super.initState();
-
     colors = List.generate(widget.count, (index) {
       return Constant.circleAvatar;
     });
@@ -43,7 +42,7 @@ class _ApplyWidgetState extends State<ApplyWidget> {
         ),
       ),
       onPressed: () async {
-        if (text == 'apply') {
+        if (text == 'Apply') {
           final player = AudioPlayer();
           player.setAsset('assets/audio/apply.mp3');
           await player.play();
@@ -53,9 +52,6 @@ class _ApplyWidgetState extends State<ApplyWidget> {
             text = 'Applied';
           });
         } else {
-          final player = AudioPlayer();
-          player.setAsset('assets/audio/apply.mp3');
-          await player.play();
           setState(() {
             colors[widget.index] = Constant.circleAvatar;
             textColor = Constant.primaryColor;

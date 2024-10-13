@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hire_me/constant.dart';
 import 'package:hire_me/core/common/functions.dart';
 import 'package:hire_me/core/utils/assets.dart';
-import 'package:hire_me/features/home/presentation/manager/search_job_cubit/search_job_cubit.dart';
 import 'package:hire_me/features/home/presentation/views/job_view.dart';
-import '../../../../../core/utils/text_styles.dart';
-import '../../../../../core/widgets/back_button.dart';
-import '../../manager/search_job_cubit/search_job_state.dart';
+import '../../../../../../core/utils/text_styles.dart';
 import 'search_bar.dart';
 
 class SearchViewBody extends StatefulWidget {
@@ -21,7 +17,7 @@ class _SearchViewBodyState extends State<SearchViewBody> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    var bloc = BlocProvider.of<SearchJobCubit>(context);
+    final TextEditingController searchController = TextEditingController();
     var size = MediaQuery.of(context).size;
     return Stack(
       children: [
@@ -39,9 +35,13 @@ class _SearchViewBodyState extends State<SearchViewBody> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 8),
-                const Row(
+                Row(
                   children: [
-                    CustomBackWidget(),
+                    GestureDetector(
+                      onTap: () => Navigator.of(context).pop(),
+                      child: Icon(Icons.arrow_back_ios,
+                          color: Constant.primaryColor),
+                    ),
                   ],
                 ),
                 const Spacer(),
@@ -61,36 +61,20 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 15),
-                BlocConsumer<SearchJobCubit, SearchJobState>(
-                  listener: (context, state) {
-                    if (state is SearchJobFailure) {
-                      CommonFunctions().showToastMessage(
-                          msg: state.errorMessage, context: context);
-                    }
-                    if (state is SearchJobSuccess) {
-                      CommonFunctions().navWithoutReplacement(
-                        context: context,
-                        pageName: JobView(
-                          search: bloc.searchController.text,
-                        ),
-                      );
-                    }
-                  },
-                  builder: (context, state) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 4),
-                      child: SearchTextFiled(
-                        isLoading: state is SearchJobLoading ? true : false,
-                        controller: bloc.searchController,
-                        hintText: 'Search jobs (eg. Software Engineer)',
-                        onTap: () {
-                          if (_formKey.currentState!.validate()) {
-                            bloc.searchJob();
-                          }
-                        },
-                      ),
-                    );
-                  },
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: SearchTextFiled(
+                    controller: searchController,
+                    hintText: 'Search jobs (eg. Software Engineer)',
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        CommonFunctions().navWithReplacement(
+                          context: context,
+                          pageName: JobView(query: searchController.text),
+                        );
+                      }
+                    },
+                  ),
                 ),
                 const Spacer(),
               ],

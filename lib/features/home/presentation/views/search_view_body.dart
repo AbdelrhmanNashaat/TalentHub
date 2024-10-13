@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hire_me/constant.dart';
 import 'package:hire_me/core/common/functions.dart';
 import 'package:hire_me/core/utils/assets.dart';
-import 'package:hire_me/features/home/presentation/manager/search_job_cubit/search_job_cubit.dart';
-import '../../../../../core/utils/text_styles.dart';
-import '../manager/search_job_cubit/search_job_state.dart';
+import 'package:hire_me/features/home/presentation/views/job_view.dart';
+import '../../../../../../core/utils/text_styles.dart';
+import '../manager/search_job_cubit/search_job_cubit.dart';
 import 'widgets/search_bar.dart';
 
 class SearchViewBody extends StatefulWidget {
@@ -19,7 +19,7 @@ class _SearchViewBodyState extends State<SearchViewBody> {
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    var bloc = BlocProvider.of<SearchJobCubit>(context);
+    final bloc = BlocProvider.of<SearchJobCubit>(context);
     var size = MediaQuery.of(context).size;
     return Stack(
       children: [
@@ -63,31 +63,22 @@ class _SearchViewBodyState extends State<SearchViewBody> {
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 15),
-                BlocConsumer<SearchJobCubit, SearchJobState>(
-                  listener: (context, state) {
-                    if (state is SearchJobFailure) {
-                      CommonFunctions().showToastMessage(
-                          msg: state.errorMessage, context: context);
-                    }
-                    if (state is SearchJobSuccess) {
-                      bloc.searchController.clear();
-                    }
-                  },
-                  builder: (context, state) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 4),
-                      child: SearchTextFiled(
-                        isLoading: state is SearchJobLoading ? true : false,
-                        controller: bloc.searchController,
-                        hintText: 'Search jobs (eg. Software Engineer)',
-                        onTap: () {
-                          if (_formKey.currentState!.validate()) {
-                            bloc.searchJob();
-                          }
-                        },
-                      ),
-                    );
-                  },
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: SearchTextFiled(
+                    controller: bloc.searchController,
+                    hintText: 'Search jobs (eg. Software Engineer)',
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        CommonFunctions().navWithoutReplacement(
+                          context: context,
+                          pageName: JobView(
+                            query: bloc.searchController.text,
+                          ),
+                        );
+                      }
+                    },
+                  ),
                 ),
                 const Spacer(),
               ],

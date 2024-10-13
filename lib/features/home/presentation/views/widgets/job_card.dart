@@ -17,7 +17,7 @@ class JobCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+      margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       color: Constant.iconColor,
       elevation: 12,
       shadowColor: Constant.searchHintTextColor,
@@ -60,7 +60,7 @@ class JobCard extends StatelessWidget {
                   color: Constant.offWhiteColor,
                   size: 16,
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 6),
                 Text(
                   '40 hrs',
                   style: CustomTextStyles.style16Medium.copyWith(
@@ -75,11 +75,11 @@ class JobCard extends StatelessWidget {
                   color: Constant.offWhiteColor,
                   size: 16,
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 6),
                 Text(
                   jobList.hits[index].location,
                   style: CustomTextStyles.style16Medium.copyWith(
-                    fontSize: 15,
+                    fontSize: 14,
                     fontWeight: FontWeight.w400,
                     color: Constant.offWhiteColor,
                   ),
