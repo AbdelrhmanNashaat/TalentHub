@@ -9,7 +9,7 @@ import '../../../../../core/widgets/text_field.dart';
 import '../../manager/forget_pass_cubit/forget_pass_cubit.dart';
 import '../../manager/forget_pass_cubit/forget_pass_state.dart';
 
-class ForgetPassMainWidget extends StatefulWidget {
+class ForgetPassMainWidget extends StatelessWidget {
   final Size size;
   const ForgetPassMainWidget({
     super.key,
@@ -17,18 +17,12 @@ class ForgetPassMainWidget extends StatefulWidget {
   });
 
   @override
-  State<ForgetPassMainWidget> createState() => _ForgetPassMainWidgetState();
-}
-
-class _ForgetPassMainWidgetState extends State<ForgetPassMainWidget> {
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  @override
   Widget build(BuildContext context) {
     var bloc = BlocProvider.of<ForgetPassCubit>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 14),
       child: Form(
-        key: formKey,
+        key: bloc.formKey,
         child: Column(
           children: [
             CustomTextField(
@@ -66,11 +60,11 @@ class _ForgetPassMainWidgetState extends State<ForgetPassMainWidget> {
                   isLoading: state is ForgetPassLoading ? true : false,
                   text: 'Send',
                   onPressed: () {
-                    if (formKey.currentState!.validate()) {
+                    if (bloc.formKey.currentState!.validate()) {
                       bloc.resetPassword();
                     }
                   },
-                  size: widget.size,
+                  size: size,
                 );
               },
             ),

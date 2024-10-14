@@ -19,13 +19,13 @@ class UserNameWidget extends StatelessWidget {
         Text(
           'Welcome,',
           style: CustomTextStyles.style20Medium.copyWith(
-            fontSize: 16,
+            fontSize: 18,
           ),
         ),
         Text(
           user?.name ?? '',
           style: CustomTextStyles.style16Medium.copyWith(
-            fontSize: 15,
+            fontSize: 16,
             fontWeight: FontWeight.w700,
           ),
         ),

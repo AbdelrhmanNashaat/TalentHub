@@ -1,14 +1,14 @@
 class CompanyInfo {
-  final String description;
-  final String employees;
-  final int founded;
-  final String hqLocation;
-  final String logoUrl;
+  final String? logoUrl;
   final String name;
-  final double rating;
-  final String revenue;
-  final int reviewCount;
-  final List<String> sectors;
+  final String? hqLocation;
+  final int? founded;
+  final String? employees;
+  final double? rating;
+  final String? revenue;
+  final int? reviewCount;
+  final List<String>? sectors;
+  final String? description;
 
   CompanyInfo({
     required this.description,

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hire_me/features/home/data/repo/home_repo.dart';
@@ -10,7 +8,6 @@ class SearchJobCubit extends Cubit<SearchJobState> {
   SearchJobCubit({required this.homeRepo}) : super(SearchJobInitial());
   TextEditingController searchController = TextEditingController();
   Future<void> searchJob() async {
-    log('search : ${searchController.text}');
     emit(SearchJobLoading());
     var data =
         await homeRepo.searchForAJob(query: searchController.text.trim());

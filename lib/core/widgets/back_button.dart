@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hire_me/constant.dart';
 
 class CustomBackWidget extends StatelessWidget {
   const CustomBackWidget({
@@ -12,7 +13,10 @@ class CustomBackWidget extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () => Navigator.of(context).pop(),
-          child: const Icon(Icons.arrow_back_ios),
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: Constant.primaryColor,
+          ),
         ),
       ],
     );

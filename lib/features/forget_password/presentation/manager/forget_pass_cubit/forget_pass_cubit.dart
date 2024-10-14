@@ -7,7 +7,7 @@ import 'forget_pass_state.dart';
 
 class ForgetPassCubit extends Cubit<ForgetPassState> {
   ForgetPassCubit() : super(ForgetPassInitial());
-
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
 
   Future<void> resetPassword() async {

@@ -14,6 +14,8 @@ class SearchTextFiled extends StatelessWidget {
   final VoidCallback onTap;
   final Color? fillColor;
   final Color? hintTextColor;
+  final Color? containerColor;
+  final Color? errorColor;
   const SearchTextFiled({
     super.key,
     this.isLoading = false,
@@ -22,12 +24,14 @@ class SearchTextFiled extends StatelessWidget {
     required this.onTap,
     this.fillColor,
     this.hintTextColor,
+    this.containerColor,
+    this.errorColor,
   });
 
   @override
   Widget build(BuildContext context) {
     return CustomTextField(
-      errorColor: Constant.scaffoldColor,
+      errorColor: errorColor ?? Constant.scaffoldColor,
       validationValue: (value) {
         if (value!.isEmpty) {
           return 'Please enter something to search';
@@ -47,7 +51,7 @@ class SearchTextFiled extends StatelessWidget {
         child: Container(
           margin: const EdgeInsets.all(4),
           decoration: BoxDecoration(
-            color: Constant.iconColor,
+            color: containerColor ?? Constant.iconColor,
             borderRadius: BorderRadius.circular(8),
           ),
           child: isLoading

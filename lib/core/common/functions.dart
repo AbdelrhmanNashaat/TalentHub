@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -119,8 +117,6 @@ class CommonFunctions {
     String? name = sharedPreferences.getString('${key}_name');
     String? imagePath = sharedPreferences.getString('${key}_imagePath');
     if (name != null) {
-      log('name : $name');
-      log('image : $imagePath');
       return UserModel(name: name, imagePath: imagePath);
     }
 

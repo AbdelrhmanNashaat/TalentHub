@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hire_me/core/common/functions.dart';
@@ -18,7 +20,6 @@ class SignUpViewBody extends StatefulWidget {
 }
 
 class _SignUpViewBodyState extends State<SignUpViewBody> {
-  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -27,7 +28,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: SingleChildScrollView(
         child: Form(
-          key: _formKey,
+          key: signUpCubit.formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -133,11 +134,12 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                   }
                   if (state is SignUpFailure) {
                     String errorMessage = state.errorMessage;
+                    log(errorMessage);
                     switch (errorMessage) {
-                      case 'email-already-in-use':
+                      case 'Email already in use.':
                         errorMessage = 'Email already in use';
                         break;
-                      case 'weak-password':
+                      case 'The password is too weak.':
                         errorMessage = 'Password is too weak';
                         break;
                       default:
@@ -156,7 +158,7 @@ class _SignUpViewBodyState extends State<SignUpViewBody> {
                     isLoading: state is SignUpLoading ? true : false,
                     text: 'Sign Up',
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
+                      if (signUpCubit.formKey.currentState!.validate()) {
                         signUpCubit.signUp();
                       }
                     },

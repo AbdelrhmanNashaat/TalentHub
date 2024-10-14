@@ -9,7 +9,7 @@ class SignInWithEmailAndPassCubit extends Cubit<SignInWithEmailAndPassState> {
   SignInWithEmailAndPassCubit() : super(SignInWithEmailAndPassInitial());
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
-
+  final formKey = GlobalKey<FormState>();
   Future<void> signIn() async {
     try {
       emit(SignInWithEmailAndPassLoading());

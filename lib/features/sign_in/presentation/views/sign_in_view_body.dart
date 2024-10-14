@@ -19,7 +19,6 @@ class SignInViewBody extends StatefulWidget {
 }
 
 class _SignInViewBodyState extends State<SignInViewBody> {
-  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -28,7 +27,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: SingleChildScrollView(
         child: Form(
-          key: _formKey,
+          key: bloc.formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -86,7 +85,7 @@ class _SignInViewBodyState extends State<SignInViewBody> {
                         state is SignInWithEmailAndPassLoading ? true : false,
                     text: 'Log in',
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
+                      if (bloc.formKey.currentState!.validate()) {
                         bloc.signIn();
                       }
                     },

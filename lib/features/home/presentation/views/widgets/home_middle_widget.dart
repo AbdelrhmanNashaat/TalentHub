@@ -4,6 +4,7 @@ import 'package:hire_me/features/home/presentation/views/search_view.dart';
 
 import '../../../../../constant.dart';
 import '../../../../../core/utils/text_styles.dart';
+import '../explore_company_view.dart';
 import 'custom_card_widget.dart';
 import 'home_title.dart';
 
@@ -38,7 +39,10 @@ class HomeMiddleWidget extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           HomeCardWidget(
-            onTap: () {},
+            onTap: () => CommonFunctions().navWithoutReplacement(
+              context: context,
+              pageName: const ExploreCompanyView(),
+            ),
             title: 'Explore Companies',
             textColor: Constant.scaffoldColor,
             backGroundColor: Constant.iconColor,

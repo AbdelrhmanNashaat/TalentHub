@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hire_me/constant.dart';
 import 'package:hire_me/core/common/functions.dart';
 import 'package:hire_me/core/utils/assets.dart';
+import 'package:hire_me/core/widgets/back_button.dart';
 import 'package:hire_me/features/home/presentation/views/job_view.dart';
 import '../../../../../../core/utils/text_styles.dart';
 import 'search_bar.dart';
@@ -35,15 +36,7 @@ class _SearchViewBodyState extends State<SearchViewBody> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const SizedBox(height: 8),
-                Row(
-                  children: [
-                    GestureDetector(
-                      onTap: () => Navigator.of(context).pop(),
-                      child: Icon(Icons.arrow_back_ios,
-                          color: Constant.primaryColor),
-                    ),
-                  ],
-                ),
+                const CustomBackWidget(),
                 const Spacer(),
                 Text(
                   'Find the best jobs in Egypt',
