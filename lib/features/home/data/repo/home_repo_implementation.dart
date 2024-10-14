@@ -44,7 +44,6 @@ class HomeRepoImplementation extends HomeRepo {
           ednPoint:
               'https://indeed12.p.rapidapi.com/company/$companyName?locality=$loc');
       CompanyInfo companyInfo = CompanyInfo.fromJson(data);
-      log('Company Info: $data');
       return Right(companyInfo);
     } catch (e) {
       if (e is DioException) {

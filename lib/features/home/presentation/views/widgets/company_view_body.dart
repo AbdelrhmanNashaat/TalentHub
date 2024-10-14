@@ -4,9 +4,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hire_me/core/utils/text_styles.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import '../../../../../constant.dart';
+import '../../../../../core/common/functions.dart';
 import '../../../../../core/widgets/loading.dart';
 import '../../../data/model/company_info.dart';
+import '../explore_company_view.dart';
 import 'app_bar.dart';
+import 'custom_card_widget.dart';
 
 class CompanyViewBody extends StatelessWidget {
   final CompanyInfo companyInfo;
@@ -22,6 +25,7 @@ class CompanyViewBody extends StatelessWidget {
           const CustomAppBar(
             title: 'Company Details',
           ),
+          const Spacer(),
           Card(
             margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             color: Constant.iconColor,
@@ -71,17 +75,87 @@ class CompanyViewBody extends StatelessWidget {
                     icon: FontAwesomeIcons.gears,
                   ),
                   const SizedBox(height: 8),
-                  CustomTextWithIcon(
-                    companyInfo: companyInfo,
-                    title: companyInfo.description ?? '',
-                    icon: FontAwesomeIcons.circleInfo,
+                  Row(
+                    textBaseline: TextBaseline.alphabetic,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    children: [
+                      Icon(
+                        FontAwesomeIcons.circleInfo,
+                        color: Constant.offWhiteColor,
+                        size: 15,
+                      ),
+                      const SizedBox(width: 8),
+                      Flexible(
+                        child: Text(
+                          companyInfo.description ?? '',
+                          style: CustomTextStyles.style14Light.copyWith(
+                            color: Constant.offWhiteColor,
+                          ),
+                          maxLines: 6,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
                   ),
+                  const SizedBox(height: 8),
+                  CustomButton(companyInfo: companyInfo),
                 ],
               ),
             ),
           ),
+          const SizedBox(height: 12),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50),
+            child: HomeCardWidget(
+              height: 12,
+              onTap: () => CommonFunctions().navWithoutReplacement(
+                context: context,
+                pageName: const ExploreCompanyView(),
+              ),
+              title: 'Explore another company',
+              textColor: Constant.offWhiteColor,
+              backGroundColor: Constant.iconColor,
+            ),
+          ),
+          const Spacer(),
         ],
       ),
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  const CustomButton({
+    super.key,
+    required this.companyInfo,
+  });
+
+  final CompanyInfo companyInfo;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Constant.scaffoldColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+          onPressed: () {},
+          child: Center(
+            child: Text(
+              'Find Available Jobs in ${companyInfo.name}',
+              style: CustomTextStyles.style14Light.copyWith(
+                fontWeight: FontWeight.w600,
+                color: Constant.primaryColor,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -142,16 +216,13 @@ class CustomTextWithIcon extends StatelessWidget {
           size: 15,
         ),
         const SizedBox(width: 8),
-        Flexible(
-          child: Text(
-            title,
-            style: CustomTextStyles.style14Light.copyWith(
-              color: Constant.offWhiteColor,
-              fontWeight: FontWeight.w500,
-            ),
-            maxLines: 5,
-            overflow: TextOverflow.ellipsis,
+        Text(
+          title,
+          style: CustomTextStyles.style14Light.copyWith(
+            color: Constant.offWhiteColor,
+            fontWeight: FontWeight.w500,
           ),
+          maxLines: 5,
         ),
       ],
     );

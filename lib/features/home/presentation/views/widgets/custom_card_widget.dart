@@ -8,12 +8,14 @@ class HomeCardWidget extends StatelessWidget {
   final Color textColor;
   final Color backGroundColor;
   final VoidCallback onTap;
+  final double? height;
   const HomeCardWidget({
     super.key,
     required this.title,
     required this.textColor,
     required this.backGroundColor,
     required this.onTap,
+    this.height,
   });
 
   @override
@@ -29,7 +31,7 @@ class HomeCardWidget extends StatelessWidget {
         elevation: 8,
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 20),
+            padding: EdgeInsets.symmetric(vertical: height ?? 20),
             child: Text(
               title,
               style: CustomTextStyles.style16Medium.copyWith(
