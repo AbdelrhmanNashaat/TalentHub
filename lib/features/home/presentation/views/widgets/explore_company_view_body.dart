@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hire_me/constant.dart';
 import 'package:hire_me/core/utils/assets.dart';
-import 'package:hire_me/features/home/presentation/manager/cubit/search_for_company_state.dart';
+import 'package:hire_me/features/home/presentation/manager/company_cubit/search_for_company_state.dart';
 import 'package:hire_me/features/home/presentation/views/company_view.dart';
 import '../../../../../core/common/functions.dart';
 import '../../../../../core/utils/text_styles.dart';
-import '../../manager/cubit/search_for_company_cubit.dart';
+import '../../manager/company_cubit/search_for_company_cubit.dart';
 import 'app_bar.dart';
 import 'search_bar.dart';
 

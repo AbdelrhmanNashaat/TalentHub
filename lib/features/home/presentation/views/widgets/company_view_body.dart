@@ -52,10 +52,25 @@ class CompanyViewBody extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  CustomTextWithIcon(
-                    companyInfo: companyInfo,
-                    title: companyInfo.hqLocation ?? 'Location not available',
-                    icon: FontAwesomeIcons.locationDot,
+                  Row(
+                    children: [
+                      Icon(
+                        FontAwesomeIcons.locationDot,
+                        color: Constant.offWhiteColor,
+                        size: 15,
+                      ),
+                      const SizedBox(width: 8),
+                      Flexible(
+                        child: Text(
+                          companyInfo.hqLocation ?? '--',
+                          style: CustomTextStyles.style14Light.copyWith(
+                            color: Constant.offWhiteColor,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 8),
                   AboutRow(companyInfo: companyInfo),
@@ -87,11 +102,11 @@ class CompanyViewBody extends StatelessWidget {
                       const SizedBox(width: 8),
                       Flexible(
                         child: Text(
-                          companyInfo.description ?? '',
+                          companyInfo.description?.trim() ?? '',
                           style: CustomTextStyles.style14Light.copyWith(
                             color: Constant.offWhiteColor,
                           ),
-                          maxLines: 6,
+                          maxLines: 8,
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
@@ -99,24 +114,13 @@ class CompanyViewBody extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   CustomButton(companyInfo: companyInfo),
+                  const SizedBox(height: 12),
                 ],
               ),
             ),
           ),
-          const SizedBox(height: 12),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50),
-            child: HomeCardWidget(
-              height: 12,
-              onTap: () => CommonFunctions().navWithoutReplacement(
-                context: context,
-                pageName: const ExploreCompanyView(),
-              ),
-              title: 'Explore another company',
-              textColor: Constant.offWhiteColor,
-              backGroundColor: Constant.iconColor,
-            ),
-          ),
+          const SizedBox(height: 10),
+          const NavToExploreButton(),
           const Spacer(),
         ],
       ),
@@ -124,13 +128,35 @@ class CompanyViewBody extends StatelessWidget {
   }
 }
 
+class NavToExploreButton extends StatelessWidget {
+  const NavToExploreButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 50),
+      child: HomeCardWidget(
+        height: 10,
+        onTap: () => CommonFunctions().navWithoutReplacement(
+          context: context,
+          pageName: const ExploreCompanyView(),
+        ),
+        title: 'Explore another company',
+        textColor: Constant.offWhiteColor,
+        backGroundColor: Constant.iconColor,
+      ),
+    );
+  }
+}
+
 class CustomButton extends StatelessWidget {
+  final CompanyInfo companyInfo;
   const CustomButton({
     super.key,
     required this.companyInfo,
   });
-
-  final CompanyInfo companyInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -222,7 +248,6 @@ class CustomTextWithIcon extends StatelessWidget {
             color: Constant.offWhiteColor,
             fontWeight: FontWeight.w500,
           ),
-          maxLines: 5,
         ),
       ],
     );
@@ -241,19 +266,19 @@ class CompanyLogoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
+        padding: const EdgeInsets.all(4),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: Colors.transparent,
           border: Border.all(
             color: Constant.circleAvatar,
-            width: 3,
+            width: 2,
           ),
         ),
         child: companyInfo.logoUrl != null
             ? ClipOval(
                 child: CachedNetworkImage(
-                  fit: BoxFit.cover,
-                  width: 50,
+                  width: 45,
                   imageUrl: companyInfo.logoUrl!,
                   progressIndicatorBuilder: (context, url, downloadProgress) =>
                       Center(

@@ -4,7 +4,7 @@ import 'package:hire_me/features/home/presentation/views/widgets/explore_company
 import '../../../../constant.dart';
 import '../../../../core/services/services_locator.dart';
 import '../../data/repo/home_repo_implementation.dart';
-import '../manager/cubit/search_for_company_cubit.dart';
+import '../manager/company_cubit/search_for_company_cubit.dart';
 
 class ExploreCompanyView extends StatelessWidget {
   const ExploreCompanyView({super.key});
