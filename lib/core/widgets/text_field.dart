@@ -76,7 +76,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
               color: widget.hintTextColor ?? Constant.iconColor,
             ),
         errorStyle: CustomTextStyles.style16Medium.copyWith(
-          fontSize: 14,
+          fontSize: 12,
           color: widget.errorColor ?? Colors.red,
         ),
         focusedBorder: borderMethod(),

@@ -9,6 +9,7 @@ import '../../../../../core/widgets/loading.dart';
 import '../../../data/model/company_info.dart';
 import '../explore_company_view.dart';
 import 'app_bar.dart';
+import 'available_job_view.dart';
 import 'custom_card_widget.dart';
 
 class CompanyViewBody extends StatelessWidget {
@@ -170,7 +171,12 @@ class CustomButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            CommonFunctions().navWithReplacement(
+              context: context,
+              pageName: AvailableJobView(companyName: companyInfo.name.trim()),
+            );
+          },
           child: Center(
             child: Text(
               'Find Available Jobs in ${companyInfo.name}',

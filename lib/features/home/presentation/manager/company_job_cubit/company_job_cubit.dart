@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hire_me/features/home/data/repo/home_repo.dart';
 
@@ -8,6 +9,7 @@ import 'company_job_state.dart';
 class CompanyJobCubit extends Cubit<CompanyJobState> {
   final HomeRepo homeRepo;
   CompanyJobCubit({required this.homeRepo}) : super(CompanyJobInitial());
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   Future<void> getCompanyJobs({required String companyName}) async {
     log('CompanyJobCubit: $companyName');
     emit(CompanyJobLoading());

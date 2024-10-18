@@ -34,7 +34,7 @@ class SearchTextFiled extends StatelessWidget {
       errorColor: errorColor ?? Constant.scaffoldColor,
       validationValue: (value) {
         if (value!.isEmpty) {
-          return 'Please enter something to search';
+          return 'Please enter a search term';
         }
         return null;
       },

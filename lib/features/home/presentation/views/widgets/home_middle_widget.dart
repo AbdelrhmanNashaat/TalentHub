@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hire_me/core/common/functions.dart';
+import 'package:hire_me/features/home/presentation/views/company_jobs_view.dart';
 import 'package:hire_me/features/home/presentation/views/search_view.dart';
 
 import '../../../../../constant.dart';
@@ -49,7 +50,10 @@ class HomeMiddleWidget extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           HomeCardWidget(
-            onTap: () {},
+            onTap: () => CommonFunctions().navWithoutReplacement(
+              context: context,
+              pageName: const CompanyJobsView(),
+            ),
             title: 'Search for a Job in specific Company',
             textColor: Constant.scaffoldColor,
             backGroundColor: Constant.primaryColor,

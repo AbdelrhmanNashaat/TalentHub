@@ -6,7 +6,7 @@ import 'search_job_state.dart';
 class SearchJobCubit extends Cubit<SearchJobState> {
   final HomeRepo homeRepo;
   SearchJobCubit({required this.homeRepo}) : super(SearchJobInitial());
-  TextEditingController searchController = TextEditingController();
+  final TextEditingController searchController = TextEditingController();
   Future<void> searchJob() async {
     emit(SearchJobLoading());
     var data =

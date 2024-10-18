@@ -15,4 +15,6 @@ class Assets {
   static const String searchEngine = 'assets/images/searchEngine.png';
   static const String searchJobBg = 'assets/images/searchJobBg.png';
   static const String searchCompany = 'assets/images/searchCompany.png';
+  static const String hiring = 'assets/images/hiring.png';
+  static const String joinUs = 'assets/images/joinUs.png';
 }
