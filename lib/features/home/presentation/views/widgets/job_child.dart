@@ -7,14 +7,13 @@ import '../../../data/model/job_search_response_model.dart';
 import 'apply_button.dart';
 
 class JobChild extends StatelessWidget {
+  final JobSearchResponse jobList;
+  final int index;
   const JobChild({
     super.key,
     required this.jobList,
     required this.index,
   });
-
-  final JobSearchResponse jobList;
-  final int index;
 
   @override
   Widget build(BuildContext context) {

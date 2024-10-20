@@ -80,10 +80,11 @@ class CompanyJobsViewBody extends StatelessWidget {
               children: [
                 Image.asset(
                   Assets.joinUs,
-                  width: 140,
+                  width: 130,
                 ),
               ],
             ),
+            const SizedBox(height: 25),
             const Spacer(),
           ],
         ),

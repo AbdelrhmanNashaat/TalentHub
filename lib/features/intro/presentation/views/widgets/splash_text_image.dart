@@ -18,7 +18,7 @@ class SplashTextWidget extends StatelessWidget {
     return Animate(
       autoPlay: true,
       effects: [
-        FadeEffect(duration: 1000.ms),
+        FadeEffect(duration: 1100.ms),
       ],
       onComplete: (controller) {
         bool hasLogin = getIt<CacheHelper>()

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hire_me/features/home/presentation/manager/search_job_cubit/search_job_cubit.dart';
 import '../../../../../core/utils/text_styles.dart';
 import '../../../../../core/widgets/back_button.dart';
 import '../../manager/search_job_cubit/search_job_state.dart';
@@ -28,7 +30,17 @@ class _JobViewUpperSecState extends State<JobViewUpperSec> {
               const SizedBox(height: 10),
               const CustomBackWidget(),
               const SizedBox(height: 20),
-              CustomSearchJobWidget(formKey: _formKey),
+              CustomSearchJobWidget(
+                formKey: _formKey,
+                onTap: () {
+                  if (_formKey.currentState!.validate()) {
+                    BlocProvider.of<SearchJobCubit>(context).searchJob();
+                  }
+                },
+                searchController:
+                    BlocProvider.of<SearchJobCubit>(context).searchController,
+                hintText: 'Search for jobs',
+              ),
               const SizedBox(height: 4),
               Padding(
                 padding: const EdgeInsets.only(right: 10),

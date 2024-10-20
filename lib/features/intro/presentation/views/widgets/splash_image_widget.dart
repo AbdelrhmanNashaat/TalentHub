@@ -14,7 +14,7 @@ class SplashImageWidget extends StatelessWidget {
       child: Animate(
         autoPlay: true,
         effects: [
-          SlideEffect(duration: 800.ms),
+          SlideEffect(duration: 900.ms),
         ],
         child: Image.asset(
           Assets.hireImage,

@@ -54,7 +54,7 @@ class HomeMiddleWidget extends StatelessWidget {
               context: context,
               pageName: const CompanyJobsView(),
             ),
-            title: 'Search for a Job in specific Company',
+            title: 'Explore Available Companies opportunities',
             textColor: Constant.scaffoldColor,
             backGroundColor: Constant.primaryColor,
           ),
